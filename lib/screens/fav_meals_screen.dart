@@ -5,8 +5,8 @@ import 'package:meals_app/screens/meal_detail_screen.dart';
 import 'package:meals_app/widgets/meals_item_card.dart';
 import 'package:provider/provider.dart';
 
-class MealsScreen extends StatelessWidget {
-  const MealsScreen({this.title, super.key});
+class FavMealsScreen extends StatelessWidget {
+  const FavMealsScreen({this.title, super.key});
   final String? title;
 
   void selectMeal(BuildContext context, MealModel meal) {
@@ -43,7 +43,7 @@ class MealsScreen extends StatelessWidget {
         ],
       ),
     );
-    var favList = favoritesProvider.fileteredMeals;
+    var favList = favoritesProvider.favoritesMeals;
     if (favList.isNotEmpty) {
       content = ListView.builder(
         itemCount: favList.length,

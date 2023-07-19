@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/meals_model.dart';
+import 'package:meals_app/provider/favorites_provider.dart';
+import 'package:provider/provider.dart';
 
 class MealDetailScreen extends StatelessWidget {
-  const MealDetailScreen(
-      {super.key, required this.onToggleFavorite, required this.mealModel});
+  const MealDetailScreen({super.key, required this.mealModel});
   final MealModel mealModel;
-  final void Function(MealModel meal) onToggleFavorite;
   @override
   Widget build(BuildContext context) {
+    FavoritesProvider favProvider = Provider.of<FavoritesProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(mealModel.title),
         actions: [
           IconButton(
               onPressed: () {
-                onToggleFavorite(mealModel);
+                favProvider.toggleMealFavoriteStatus(mealModel);
               },
               icon: const Icon(Icons.star)),
         ],

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/provider/favorites_provider.dart';
+import 'package:provider/provider.dart';
 
 class MainDrawer extends StatelessWidget {
-  const MainDrawer({required this.onSelectedScreen, super.key});
-
-  final void Function(String identifier) onSelectedScreen;
+  const MainDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
+    FavoritesProvider favoritesProvider =
+        Provider.of<FavoritesProvider>(context);
     return Drawer(
       child: Column(
         children: [
@@ -51,7 +53,7 @@ class MainDrawer extends StatelessWidget {
                   fontSize: 24),
             ),
             onTap: () {
-              onSelectedScreen('meals');
+              favoritesProvider.onSelectScreen('meals', context);
             },
           ),
           ListTile(
@@ -67,7 +69,7 @@ class MainDrawer extends StatelessWidget {
                   fontSize: 24),
             ),
             onTap: () {
-              onSelectedScreen('filter');
+              favoritesProvider.onSelectScreen('filter', context);
             },
           ),
         ],
